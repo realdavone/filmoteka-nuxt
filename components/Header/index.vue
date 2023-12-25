@@ -13,7 +13,10 @@
 					<NuxtLink to="/discover" class="button"> Objaviť </NuxtLink>
 					<NuxtLink to="/search" class="button">Hľadať</NuxtLink>
 				</template>
-				<Button v-if="status === 'unauthenticated'" @click="signIn" data-login
+				<Button
+					v-if="status === 'unauthenticated'"
+					@click="$router.push('/auth/signin')"
+					data-login
 					>Login</Button
 				>
 				<HeaderUser v-else />
@@ -23,7 +26,7 @@
 </template>
 
 <script setup>
-const { status, signIn } = useAuth()
+const { status } = useAuth()
 </script>
 
 <style scoped>

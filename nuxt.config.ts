@@ -13,7 +13,8 @@ export default defineNuxtConfig({
 		},
 		public: {
 			authJs: {
-				baseUrl: process.env.NEXTAUTH_URL // The URL of your deployed app (used for origin Check in production)
+				baseUrl: process.env.NEXTAUTH_URL,
+				verifyClientOnEveryRequest: false
 			}
 		}
 	},
