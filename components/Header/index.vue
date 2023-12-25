@@ -41,6 +41,7 @@ header {
 	display: flex;
 	align-items: center;
 	gap: 2rem;
+	container: header / inline-size;
 
 	& .logo {
 		font-size: 1.5rem;
@@ -60,6 +61,14 @@ header {
 		align-items: center;
 		justify-content: flex-end;
 		width: 100%;
+	}
+
+	@container header  (max-width: 768px) {
+		.logo {
+			& span {
+				display: none;
+			}
+		}
 	}
 }
 

@@ -31,7 +31,7 @@
 		</div>
 	</LayoutWrapper>
 
-	<LayoutWrapper background="tertiary">
+	<LayoutWrapper background="tertiary" bleed>
 		<VideoPlayer :url="playerUrl" style="margin-inline: auto" />
 	</LayoutWrapper>
 

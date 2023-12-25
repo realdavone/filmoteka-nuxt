@@ -7,7 +7,9 @@
 		/>
 
 		<template v-if="!!$route.query?.q">
-			<template v-if="$route.params.params[0] === 'multi'">
+			<template
+				v-if="$route.params.params[0] === 'multi' || !$route.params.params[0]"
+			>
 				<List heading="Filmy" @showMore="handleShowMore('movie')">
 					<ListItem
 						v-for="item in data?.results?.filter(

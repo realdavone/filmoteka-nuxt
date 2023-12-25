@@ -31,7 +31,7 @@
 			</section>
 		</div>
 	</LayoutWrapper>
-	<LayoutWrapper background="tertiary">
+	<LayoutWrapper background="tertiary" bleed>
 		<VideoPlayer :url="movie?.playerUrl" style="margin-inline: auto" />
 	</LayoutWrapper>
 </template>

@@ -17,26 +17,33 @@ const props = defineProps({
 	backgroundImage: {
 		type: String,
 		default: ''
+	},
+	bleed: {
+		type: Boolean,
+		default: false
 	}
 })
 
 const style = computed(() => {
-	if (!!props.backgroundImage) {
-		return {
-			backgroundSize: 'cover',
-			backgroundRepeat: 'no-repeat',
-			backgroundPosition: 'center',
-			backgroundImage: `
+	const background = !!props.backgroundImage
+		? {
+				backgroundSize: 'cover',
+				backgroundRepeat: 'no-repeat',
+				backgroundPosition: 'center',
+				backgroundImage: `
       linear-gradient(to left, transparent, var(--primary-background-clr)),
       url(${props.backgroundImage})
     `
-		}
-	}
+		  }
+		: {
+				backgroundColor: `var(--${props.background}-background-clr${
+					props.alpha ? '-a' : ''
+				})`
+		  }
 
 	return {
-		backgroundColor: `var(--${props.background}-background-clr${
-			props.alpha ? '-a' : ''
-		})`
+		...(!props.bleed ? { paddingInline: '2rem' } : {}),
+		...background
 	}
 })
 </script>
@@ -45,6 +52,5 @@ const style = computed(() => {
 .wrapper {
 	max-width: 1800px;
 	margin: 0 auto;
-	padding-inline: 2rem;
 }
 </style>

@@ -78,6 +78,7 @@ const info = computed(() => {
 	display: flex;
 	overflow: hidden;
 	height: 140px;
+	container: episode / inline-size;
 
 	& img {
 		height: 100%;
@@ -133,6 +134,12 @@ const info = computed(() => {
 		align-items: center;
 		justify-content: center;
 		backdrop-filter: blur(5px);
+	}
+
+	@container episode (max-width: 768px) {
+		img {
+			display: none;
+		}
 	}
 }
 </style>
