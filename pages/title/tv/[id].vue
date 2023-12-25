@@ -84,13 +84,10 @@ const { data: tv, suspense } = useQuery({
 
 await suspense()
 
-const playerUrl = computed(() => {
-	if (!tv.value?.playerUrl) {
-		return null
-	}
-
-	return `${tv.value?.playerUrl}&s=${playerState.season}&e=${playerState.episode}`
-})
+const playerUrl = computed(
+	() =>
+		`https://multiembed.mov/?video_id=${tv.value?.external_ids?.imdb_id}&s=${playerState.season}&e=${playerState.episode}`
+)
 
 const numberOfEpisodes = computed(
 	() => seasons.value?.[playerState.season - 1]?.episode_count

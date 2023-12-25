@@ -134,6 +134,8 @@ const info = computed(() => {
 		align-items: center;
 		justify-content: center;
 		backdrop-filter: blur(5px);
+		padding: 1rem;
+		text-align: center;
 	}
 
 	@container episode (max-width: 768px) {

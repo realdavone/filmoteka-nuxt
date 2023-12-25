@@ -1,7 +1,7 @@
 <template>
 	<div class="player">
 		<iframe
-			v-if="status === 'authenticated' && props.url"
+			v-if="status === 'authenticated'"
 			class="player"
 			:src="props.url"
 			frameborder="0"
@@ -46,7 +46,11 @@ const props = defineProps({
 	padding: 1rem;
 	gap: 1rem;
 	height: 100%;
-	font-size: x-large;
-	font-weight: 500;
+	font-size: clamp(1rem, 5vw, 1.5rem);
+	font-weight: clamp(500, 5vw, 700);
+
+	& p {
+		text-align: center;
+	}
 }
 </style>

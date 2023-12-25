@@ -32,7 +32,10 @@
 		</div>
 	</LayoutWrapper>
 	<LayoutWrapper background="tertiary" bleed>
-		<VideoPlayer :url="movie?.playerUrl" style="margin-inline: auto" />
+		<VideoPlayer
+			:url="`https://multiembed.mov/?video_id=${movie?.external_ids?.imdb_id}`"
+			style="margin-inline: auto"
+		/>
 	</LayoutWrapper>
 </template>
 
