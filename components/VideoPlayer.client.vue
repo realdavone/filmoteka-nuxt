@@ -1,7 +1,7 @@
 <template>
 	<div class="player">
 		<iframe
-			v-if="status === 'authenticated'"
+			v-if="status === 'authenticated' && props.url"
 			class="player"
 			:src="props.url"
 			frameborder="0"

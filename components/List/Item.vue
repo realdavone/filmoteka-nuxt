@@ -1,5 +1,15 @@
 <template>
-	<div class="item" :style="imageSource">
+	<div
+		class="item"
+		:style="imageSource"
+		@click="
+			$router.push(
+				`/title/${props.item?.media_type ?? props.fallbackMediaType}/${
+					props.item?.id
+				}`
+			)
+		"
+	>
 		<!-- <img
 			v-if="props.item?.media_type === 'person'"
 			class="image"

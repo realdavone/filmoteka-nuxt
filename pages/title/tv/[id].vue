@@ -84,9 +84,13 @@ const { data: tv, suspense } = useQuery({
 
 await suspense()
 
-const playerUrl = computed(
-	() => `${tv.value?.playerUrl}&s=${playerState.season}&e=${playerState.episode}`
-)
+const playerUrl = computed(() => {
+	if (!tv.value?.playerUrl) {
+		return null
+	}
+
+	return `${tv.value?.playerUrl}&s=${playerState.season}&e=${playerState.episode}`
+})
 
 const numberOfEpisodes = computed(
 	() => seasons.value?.[playerState.season - 1]?.episode_count
@@ -123,7 +127,7 @@ useSeoMeta({
 }
 
 .title {
-	font-size: 3.75rem;
+	font-size: clamp(1.5rem, 5vw, 3.75rem);
 	font-weight: 700;
 	margin-bottom: 1rem;
 	line-height: 1.2;

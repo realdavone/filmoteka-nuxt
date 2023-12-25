@@ -79,8 +79,9 @@ header {
 
 .cards {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 	gap: 2rem;
 	margin-top: 3rem;
+	container: cards / inline-size;
 }
 </style>
