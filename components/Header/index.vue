@@ -1,0 +1,73 @@
+<template>
+	<header>
+		<LayoutWrapper class="header">
+			<div class="logo">
+				<NuxtLink to="/">
+					<img src="/images/logo.svg" alt="logo" width="40" />
+
+					<span> Filmotéka </span>
+				</NuxtLink>
+			</div>
+			<nav>
+				<template v-if="status === 'authenticated'">
+					<NuxtLink to="/discover" class="button"> Objaviť </NuxtLink>
+					<NuxtLink to="/search" class="button">Hľadať</NuxtLink>
+				</template>
+				<Button v-if="status === 'unauthenticated'" @click="signIn" data-login
+					>Login</Button
+				>
+				<HeaderUser v-else />
+			</nav>
+		</LayoutWrapper>
+	</header>
+</template>
+
+<script setup>
+const { status, signIn } = useAuth()
+</script>
+
+<style scoped>
+header {
+	position: sticky;
+	top: 0;
+	z-index: 10;
+}
+
+.header {
+	height: 66px;
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+
+	& .logo {
+		font-size: 1.5rem;
+		font-weight: 700;
+
+		& a {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+		}
+	}
+
+	& nav {
+		margin-left: auto;
+		display: flex;
+		gap: 20px;
+		align-items: center;
+		justify-content: flex-end;
+		width: 100%;
+	}
+}
+
+.button:not([data-login]) {
+	font-weight: 500;
+	padding-inline: 0.5rem;
+
+	@media (hover: hover) {
+		&:hover {
+			color: var(--secondary-clr);
+		}
+	}
+}
+</style>
