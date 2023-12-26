@@ -37,7 +37,7 @@ header {
 }
 
 .header {
-	height: 56px;
+	height: 66px;
 	display: flex;
 	align-items: center;
 	gap: 2rem;

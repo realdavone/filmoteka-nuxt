@@ -64,7 +64,7 @@
 			</template>
 
 			<Pagination
-				v-if="$route.params?.params?.[0] !== 'multi'"
+				v-if="$route.params?.params?.[0] !== 'multi' && $route.params?.params?.[0]"
 				:total="data?.total_pages ?? 0"
 				:current="+$route.query?.page ?? 1"
 				@prev="updatePage(+$route.query?.page - 1)"
@@ -96,7 +96,18 @@ const { data, isFetching } = useQuery({
 	enabled: computed(() => !!useRoute().query.q)
 })
 
-const handleSearch = (q) => useRouter().push({ query: { q, page: 1 } })
+const handleSearch = (q) => {
+	const query = { q }
+
+	if (
+		useRoute().params.params[0] === 'movie' ||
+		useRoute().params.params[0] === 'tv'
+	) {
+		query.page = 1
+	}
+
+	useRouter().push({ query })
+}
 
 const updatePage = (page) => {
 	const query = structuredClone(useRoute().query)

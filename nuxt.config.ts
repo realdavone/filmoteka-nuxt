@@ -2,6 +2,7 @@ import { resolve } from 'node:path'
 
 export default defineNuxtConfig({
 	runtimeConfig: {
+		mongoDbUri: process.env.MONGODB_URI,
 		tmdbApiKey: process.env.TMDB_API_KEY,
 		tmdbBaseUrl: process.env.TMDB_BASE_URL,
 		authJs: {

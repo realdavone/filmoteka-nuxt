@@ -29,7 +29,7 @@
 				</div>
 				<Button
 					@click="
-						$scrollToElement({ offsetTop: 56, element: $refs.videoPlayer.$el })
+						$scrollToElement({ offsetTop: 66, element: $refs.videoPlayer.$el })
 					"
 					>Prejsť na prehrávač</Button
 				>

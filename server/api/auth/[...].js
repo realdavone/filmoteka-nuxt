@@ -1,5 +1,6 @@
 import GoogleProvider from '@auth/core/providers/google'
 import { NuxtAuthHandler } from '#auth'
+import PermittedEmail from '~/server/models/PermittedEmail'
 
 const runtimeConfig = useRuntimeConfig()
 
@@ -17,7 +18,9 @@ export const authOptions = {
 	},
 	callbacks: {
 		async signIn({ profile }) {
-			return ['davidkuljovsky@gmail.com'].includes(profile.email)
+			const permitted = await PermittedEmail.findOne({ email: profile.email })
+
+			return !!permitted
 		}
 	}
 }
