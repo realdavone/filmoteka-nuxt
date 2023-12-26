@@ -5,7 +5,10 @@
 	>
 		<div class="info-wrapper">
 			<section class="info">
-				<h2 class="title">{{ title }}</h2>
+				<h2 class="title">
+					{{ title }}
+					<Rating :rating="movie?.vote_average" :votes="movie?.vote_count" />
+				</h2>
 				<div class="tags">
 					<Tag :label="$getFormattedDate(movie?.release_date)" />
 					<Tag :label="$getRuntime(movie?.runtime)" />

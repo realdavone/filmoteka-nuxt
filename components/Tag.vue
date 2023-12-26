@@ -5,7 +5,7 @@
 <script setup>
 const props = defineProps({
 	label: {
-		type: String
+		type: [String, Number]
 	}
 })
 </script>

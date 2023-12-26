@@ -5,9 +5,12 @@
 	>
 		<div class="info-wrapper">
 			<section class="info">
-				<h2 class="title">{{ title }}</h2>
+				<h2 class="title">
+					{{ title }} <Rating :rating="tv?.vote_average" :votes="tv?.vote_count" />
+				</h2>
 				<div class="tags">
 					<Tag :label="$getFormattedDate(tv?.first_air_date)" />
+					<Tag :label="`${tv.number_of_episodes} epizód`" />
 				</div>
 				<h4 class="overview-title">Popis</h4>
 				<p class="overview">
@@ -89,6 +92,8 @@ const { data: tv, suspense } = useQuery({
 })
 
 await suspense()
+
+console.log(tv.value)
 
 const playerUrl = computed(
 	() =>
@@ -178,15 +183,6 @@ useSeoMeta({
 	flex-wrap: wrap;
 	gap: 0.5rem;
 	margin-bottom: 1rem;
-
-	& .genre {
-		padding: 0.25rem 0.5rem 0.3rem;
-		border-radius: 0.25rem;
-		background-color: var(--secondary-background-clr);
-		color: #fff;
-		font-size: 0.875rem;
-		letter-spacing: 0.05em;
-	}
 }
 
 .tags {
