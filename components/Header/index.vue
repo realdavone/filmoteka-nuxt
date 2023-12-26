@@ -3,7 +3,7 @@
 		<LayoutWrapper class="header">
 			<div class="logo">
 				<NuxtLink to="/">
-					<img src="/images/logo.svg" alt="logo" width="40" />
+					<img src="/images/logo.svg" alt="logo" width="30" />
 
 					<span> Filmotéka </span>
 				</NuxtLink>
@@ -17,7 +17,7 @@
 					v-if="status === 'unauthenticated'"
 					@click="$router.push('/auth/signin')"
 					data-login
-					>Login</Button
+					>Prihlásiť sa</Button
 				>
 				<HeaderUser v-else />
 			</nav>
@@ -37,20 +37,20 @@ header {
 }
 
 .header {
-	height: 66px;
+	height: 56px;
 	display: flex;
 	align-items: center;
 	gap: 2rem;
 	container: header / inline-size;
 
 	& .logo {
-		font-size: 1.5rem;
+		font-size: 1.25rem;
 		font-weight: 700;
 
 		& a {
 			display: flex;
 			align-items: center;
-			gap: 0.5rem;
+			gap: 0.75rem;
 		}
 	}
 

@@ -21,6 +21,16 @@ export default defineNuxtPlugin(() => {
 				if (!time) return
 
 				return new Intl.DateTimeFormat('sk-SK', options).format(new Date(time))
+			},
+			scrollToElement: ({ element, offsetTop = 0 }) => {
+				const elementPosition = element.getBoundingClientRect().top
+
+				const top = elementPosition - offsetTop
+
+				window.scrollTo({
+					top,
+					behavior: 'smooth'
+				})
 			}
 		}
 	}

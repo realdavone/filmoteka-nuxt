@@ -3,22 +3,25 @@
 		<img
 			:src="user.image"
 			alt="user"
-			width="40"
+			width="30"
 			@click="isDropdownOpen = !isDropdownOpen"
 		/>
 
 		<Transition name="fade">
 			<div v-show="isDropdownOpen" ref="dropdownRef" class="dropdown">
-				<div class="user-info">
-					<img :src="user.image" alt="user" width="36" />
-					<div>
-						<div class="name">
-							{{ user.name }}
-						</div>
-						<div class="email">
-							{{ user.email }}
+				<div class="main-menu">
+					<div class="user-info">
+						<img :src="user.image" alt="user" width="36" />
+						<div>
+							<div class="name">
+								{{ user.name }}
+							</div>
+							<div class="email">
+								{{ user.email }}
+							</div>
 						</div>
 					</div>
+					<button class="button">Záložky</button>
 				</div>
 
 				<button @click="signOut" class="button">Odhlásiť sa</button>
@@ -76,15 +79,18 @@ onClickOutside(dropdownRef, () => {
 		backdrop-filter: blur(5px);
 		padding: 0.75rem;
 		border-radius: 0.75rem;
-		width: max-content;
 		border: 1px solid #ffffff10;
+		width: max-content;
+
+		& .main-menu {
+			border-bottom: 1px solid #ffffff10;
+			padding-bottom: 0.5rem;
+		}
 
 		& .user-info {
 			display: flex;
 			gap: 1rem;
-			padding-bottom: 1.5rem;
-			padding-top: 0.5rem;
-			border-bottom: 1px solid #ffffff10;
+			margin-block: 0.5rem;
 
 			& img {
 				border-radius: 50%;

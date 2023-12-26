@@ -28,11 +28,18 @@
 						clickable
 					/>
 				</div>
+				<Button
+					@click="
+						$scrollToElement({ offsetTop: 56, element: $refs.videoPlayer.$el })
+					"
+					>Prejsť na prehrávač</Button
+				>
 			</section>
 		</div>
 	</LayoutWrapper>
-	<LayoutWrapper background="tertiary" bleed>
+	<LayoutWrapper background="black" bleed>
 		<VideoPlayer
+			ref="videoPlayer"
 			:url="`https://multiembed.mov/?video_id=${movie?.external_ids?.imdb_id}`"
 			style="margin-inline: auto"
 		/>
@@ -46,13 +53,15 @@ const { $getTranslation } = useNuxtApp()
 
 const id = useRoute().params.id
 
+const videoPlayer = ref(null)
+
 const { data: movie, suspense } = useQuery({
 	queryKey: ['movie', id],
-	staleTime: Infinity,
 	queryFn: () =>
 		$fetch(`/api/movie/${id}`, {
 			headers: useRequestHeaders(['cookie'])
-		})
+		}),
+	staleTime: Infinity
 })
 
 await suspense()
@@ -88,6 +97,7 @@ useSeoMeta({
 	font-weight: 700;
 	margin-bottom: 1rem;
 	line-height: 1.2;
+	text-wrap: balance;
 }
 
 .overview-title {

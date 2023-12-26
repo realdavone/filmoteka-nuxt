@@ -6,7 +6,7 @@
 				<p class="description">
 					Nami vybraný film ktorý máte na dosah ruky. Sledujte teraz!
 				</p>
-				<Button @click="useRouter().push(`/title/movie/${props.movie?.id}`)"
+				<Button @click="useRouter().push(`/movie/${props.movie?.id}`)"
 					>Sledovať teraz</Button
 				>
 			</div>

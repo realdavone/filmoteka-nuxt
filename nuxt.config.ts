@@ -13,14 +13,13 @@ export default defineNuxtConfig({
 		},
 		public: {
 			authJs: {
-				baseUrl: process.env.NEXTAUTH_URL,
-				verifyClientOnEveryRequest: false
+				baseUrl: process.env.NEXTAUTH_URL
 			}
 		}
 	},
 	css: ['assets/main.css'],
 	devtools: { enabled: true },
-	modules: ['@hebilicious/authjs-nuxt', '@vueuse/nuxt'],
+	modules: ['@hebilicious/authjs-nuxt', '@vueuse/nuxt', '@pinia/nuxt'],
 	alias: {
 		cookie: resolve(__dirname, 'node_modules/cookie')
 	}

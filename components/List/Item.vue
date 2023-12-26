@@ -4,17 +4,10 @@
 		:style="imageSource"
 		@click="
 			$router.push(
-				`/title/${props.item?.media_type ?? props.fallbackMediaType}/${
-					props.item?.id
-				}`
+				`/${props.item?.media_type ?? props.fallbackMediaType}/${props.item?.id}`
 			)
 		"
 	>
-		<!-- <img
-			v-if="props.item?.media_type === 'person'"
-			class="image"
-			:src="`https://image.tmdb.org/t/p/w500/${props.item?.profile_path}`"
-		/> -->
 		<h3 class="title">{{ props.item?.title ?? props.item?.name }}</h3>
 		<p class="date">
 			{{
@@ -23,7 +16,7 @@
 		</p>
 		<div class="bottom-row">
 			<NuxtLink
-				:to="`/title/${props.item?.media_type ?? props.fallbackMediaType}/${
+				:to="`/${props.item?.media_type ?? props.fallbackMediaType}/${
 					props.item?.id
 				}`"
 			>

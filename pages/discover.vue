@@ -33,8 +33,8 @@
 				/>
 			</List>
 			<Pagination
-				:current="$route.query.page ?? 1"
-				:total="titles?.total_pages"
+				:current="!!$route.query.page ? +$route.query.page : 1"
+				:total="+titles?.total_pages"
 				@next="updatePagination(+($route.query.page ?? 1) + 1)"
 				@prev="updatePagination(+($route.query.page ?? 1) - 1)"
 			/>

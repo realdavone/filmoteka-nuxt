@@ -2,13 +2,15 @@
 	<div
 		class="card"
 		@click="
-			$router.push(
-				`/title/${item.media_type ?? props.fallbackMediaType}/${item.id}`
-			)
+			$router.push(`/${item.media_type ?? props.fallbackMediaType}/${item.id}`)
 		"
 	>
 		<div class="card-poster">
-			<img :src="`https://image.tmdb.org/t/p/w500${item.poster_path}`" />
+			<img
+				:src="`https://image.tmdb.org/t/p/w500${item.poster_path}`"
+				draggable="false"
+				loading="lazy"
+			/>
 		</div>
 		<div class="card-overlay">
 			<div class="card-title">
@@ -21,9 +23,7 @@
 				{{ item.overview }}
 			</div>
 			<div class="card-buttons">
-				<Button
-					:to="`/title/${item.media_type ?? props.fallbackMediaType}/${item.id}`"
-				>
+				<Button :to="`/${item.media_type ?? props.fallbackMediaType}/${item.id}`">
 					Sledovať
 				</Button>
 			</div>

@@ -27,7 +27,6 @@
 <script setup>
 import { useQuery } from '@tanstack/vue-query'
 
-const { $getTranslation } = useNuxtApp()
 const props = defineProps({
 	seriesId: {
 		type: [Number, String]
@@ -63,7 +62,9 @@ const { data: episode, isLoading } = useQuery({
 })
 
 const info = computed(() => {
-	const translation = $getTranslation(episode.value?.translations?.translations)
+	const translation = useNuxtApp().$getTranslation(
+		episode.value?.translations?.translations
+	)
 
 	return translation
 })

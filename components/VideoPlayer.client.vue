@@ -27,7 +27,7 @@ const props = defineProps({
 <style scoped>
 .player {
 	width: 100%;
-	max-width: 1024px;
+	max-width: 768px;
 	aspect-ratio: 16 / 9;
 	background-color: black;
 	overflow: hidden;

@@ -27,12 +27,18 @@
 						clickable
 					/>
 				</div>
+				<Button
+					@click="
+						$scrollToElement({ offsetTop: 56, element: $refs.videoPlayer.$el })
+					"
+					>Prejsť na prehrávač</Button
+				>
 			</section>
 		</div>
 	</LayoutWrapper>
 
-	<LayoutWrapper background="tertiary" bleed>
-		<VideoPlayer :url="playerUrl" style="margin-inline: auto" />
+	<LayoutWrapper background="black" bleed>
+		<VideoPlayer ref="videoPlayer" :url="playerUrl" style="margin-inline: auto" />
 	</LayoutWrapper>
 
 	<LayoutWrapper style="padding-bottom: 6rem">
@@ -75,11 +81,11 @@ const playerState = reactive({
 
 const { data: tv, suspense } = useQuery({
 	queryKey: ['tv', id],
-	staleTime: Infinity,
 	queryFn: () =>
 		$fetch(`/api/tv/${id}`, {
 			headers: useRequestHeaders(['cookie'])
-		})
+		}),
+	staleTime: Infinity
 })
 
 await suspense()
@@ -128,6 +134,7 @@ useSeoMeta({
 	font-weight: 700;
 	margin-bottom: 1rem;
 	line-height: 1.2;
+	text-wrap: balance;
 }
 
 .overview-title {
