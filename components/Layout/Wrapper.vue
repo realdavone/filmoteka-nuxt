@@ -42,7 +42,9 @@ const style = computed(() => {
 		  }
 
 	return {
-		...(!props.bleed ? { paddingInline: '2rem' } : {}),
+		...(!props.bleed
+			? { paddingInline: 'clamp(1rem, 0.7368rem + 1.1228vw, 2rem)' }
+			: {}),
 		...background
 	}
 })

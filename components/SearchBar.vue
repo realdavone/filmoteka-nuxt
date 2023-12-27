@@ -21,6 +21,7 @@
 			<div v-else class="loader"></div>
 
 			<input
+				ref="input"
 				class="search-input"
 				type="text"
 				placeholder="Vyhľadávanie"
@@ -43,11 +44,18 @@ const props = defineProps({
 		default: ''
 	}
 })
-const search = ref(props.defaultValue)
-
 const emit = defineEmits(['search'])
 
+const search = ref(props.defaultValue)
+const input = ref(null)
+
 const handleSearch = () => emit('search', search.value)
+
+onMounted(() => {
+	if (process.client && input.value) {
+		input.value.focus()
+	}
+})
 </script>
 
 <style scoped>
