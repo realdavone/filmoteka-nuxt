@@ -8,7 +8,14 @@
 			)
 		"
 	>
-		<h3 class="title">{{ props.item?.title ?? props.item?.name }}</h3>
+		<h3
+			class="title"
+			:style="{
+				viewTransitionName: `${props.item?.media_type}-${props.item?.id}-title`
+			}"
+		>
+			{{ props.item?.title ?? props.item?.name }}
+		</h3>
 		<p class="date">
 			{{
 				$getFormattedDate(props.item?.release_date ?? props.item?.first_air_date)

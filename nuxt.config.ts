@@ -23,5 +23,8 @@ export default defineNuxtConfig({
 	modules: ['@hebilicious/authjs-nuxt', '@vueuse/nuxt', '@pinia/nuxt'],
 	alias: {
 		cookie: resolve(__dirname, 'node_modules/cookie')
+	},
+	experimental: {
+		viewTransition: true
 	}
 })

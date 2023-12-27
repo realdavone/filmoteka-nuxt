@@ -1,22 +1,22 @@
 <template>
 	<div class="player">
-		<div v-if="!hasPlayBeenClicked" class="play-wrapper">
-			<button class="play-button" @click="play">
-				Spustiť prehrávač&nbsp;&nbsp;&nbsp;&#x25B6;
-			</button>
+		<div v-if="status === 'unauthenticated'" class="login-wrapper">
+			<p>Prehrávač je prístupný iba prihláseným užívateľom.</p>
+			<Button @click="$router.push('/auth/signin')">Prihlásiť sa</Button>
 		</div>
 		<template v-else>
+			<div v-if="!hasPlayBeenClicked" class="play-wrapper">
+				<button class="play-button" @click="play">
+					Spustiť prehrávač&nbsp;&nbsp;&nbsp;&#x25B6;
+				</button>
+			</div>
 			<iframe
-				v-if="status === 'authenticated'"
+				v-else
 				class="player"
 				:src="props.url"
 				frameborder="0"
 				allowfullscreen
 			></iframe>
-			<div v-else class="login-wrapper">
-				<p>Prehrávač je prístupný iba prihláseným užívateľom.</p>
-				<Button @click="$router.push('/auth/signin')">Prihlásiť sa</Button>
-			</div>
 		</template>
 	</div>
 </template>
@@ -57,6 +57,7 @@ defineExpose({ play })
 	aspect-ratio: 16 / 9;
 	background-color: black;
 	overflow: hidden;
+	margin-inline: auto;
 
 	& iframe {
 		width: 100%;

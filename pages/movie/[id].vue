@@ -5,7 +5,10 @@
 	>
 		<div class="info-wrapper">
 			<section class="info">
-				<h2 class="title">
+				<h2
+					class="title"
+					:style="{ viewTransitionName: `movie-${useRoute().params.id}-title` }"
+				>
 					{{ title }}
 					<Rating :rating="movie?.vote_average" :votes="movie?.vote_count" />
 				</h2>

@@ -15,7 +15,7 @@ export default defineNuxtPlugin(() => {
 				const hours = Math.floor(runtimeInMinutes / 60)
 				const minutes = runtimeInMinutes % 60
 
-				return `${hours}h ${minutes}m`
+				return `${hours !== 0 ? `${hours}h` : ''} ${minutes}m`
 			},
 			getFormattedDate: (time, options = {}) => {
 				if (!time) return
@@ -23,7 +23,13 @@ export default defineNuxtPlugin(() => {
 				return new Intl.DateTimeFormat('sk-SK', options).format(new Date(time))
 			},
 			scrollToElement: ({ element, offsetTop = 0 }) => {
-				const elementPosition = element.getBoundingClientRect().top
+				if (!element || typeof window === 'undefined') {
+					return
+				}
+
+				const rect = element.getBoundingClientRect().top
+
+				const elementPosition = rect + window.scrollY
 
 				const top = elementPosition - offsetTop
 

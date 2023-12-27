@@ -14,11 +14,13 @@
 			</header>
 			<h3 class="title">
 				<Skeleton v-if="isLoading" height="1.5rem" />
-				<span v-else>{{ info?.name }}</span>
+				<span v-else>{{ info?.name ?? episode?.name }}</span>
 			</h3>
 			<p class="overview">
 				<Skeleton v-if="isLoading" height="1rem" />
-				<span v-else>{{ !props.enabled ? 'Popis epizódy' : info?.overview }}</span>
+				<span v-else>{{
+					!props.enabled ? 'Popis epizódy' : info?.overview ?? episode?.overview
+				}}</span>
 			</p>
 		</div>
 	</section>
@@ -44,14 +46,14 @@ const props = defineProps({
 })
 
 const { data: episode, isLoading } = useQuery({
-	queryKey: [
+	queryKey: computed(() => [
 		'episode',
-		computed(() => ({
+		{
 			series: props.seriesId,
 			season: props.season,
 			episode: props.episode
-		}))
-	],
+		}
+	]),
 	staleTime: Infinity,
 	queryFn: () =>
 		$fetch(`/api/tv/${props.seriesId}/episode`, {

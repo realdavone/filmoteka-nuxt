@@ -5,12 +5,16 @@
 	>
 		<div class="info-wrapper">
 			<section class="info">
-				<h2 class="title">
+				<h2
+					class="title"
+					:style="{ viewTransitionName: `tv-${useRoute().params.id}-title` }"
+				>
 					{{ title }} <Rating :rating="tv?.vote_average" :votes="tv?.vote_count" />
 				</h2>
 				<div class="tags">
 					<Tag :label="$getFormattedDate(tv?.first_air_date)" />
 					<Tag :label="`${tv.number_of_episodes} epizód`" />
+					<Tag :label="`${$getRuntime(tv?.episode_run_time?.[0])}`" />
 				</div>
 				<h4 class="overview-title">Popis</h4>
 				<p class="overview">

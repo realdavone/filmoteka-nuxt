@@ -1,32 +1,32 @@
 <template>
-	<div
-		class="card"
-		@click="
-			$router.push(`/${item.media_type ?? props.fallbackMediaType}/${item.id}`)
-		"
-	>
-		<div class="card-poster">
-			<img
-				:src="`https://image.tmdb.org/t/p/w500${item.poster_path}`"
-				draggable="false"
-				loading="lazy"
-			/>
+	<div class="card-wrapper">
+		<div
+			class="card"
+			@click="
+				$router.push(`/${item.media_type ?? props.fallbackMediaType}/${item.id}`)
+			"
+		>
+			<div class="card-poster">
+				<img
+					:src="`https://image.tmdb.org/t/p/w500${item.poster_path}`"
+					draggable="false"
+					loading="lazy"
+				/>
+			</div>
+			<div class="card-overlay">
+				<div class="card-rating">
+					{{ getRating(item.vote_average) }}
+				</div>
+				<div class="card-description">
+					{{ item.overview }}
+				</div>
+			</div>
 		</div>
-		<div class="card-overlay">
-			<div class="card-title">
-				{{ item.title ?? item.name }}
-			</div>
-			<div class="card-rating">
-				{{ getRating(item.vote_average) }}
-			</div>
-			<div class="card-description">
-				{{ item.overview }}
-			</div>
-			<div class="card-buttons">
-				<Button :to="`/${item.media_type ?? props.fallbackMediaType}/${item.id}`">
-					Sledovať
-				</Button>
-			</div>
+		<div
+			class="card-title"
+			:style="{ viewTransitionName: `${item.media_type}-${item.id}-title` }"
+		>
+			{{ item.title ?? item.name }}
 		</div>
 	</div>
 </template>
@@ -46,6 +46,11 @@ const getRating = (rating) =>
 </script>
 
 <style scoped>
+& .card-title {
+	font-size: 1.25rem;
+	font-weight: 500;
+	margin-top: 1rem;
+}
 .card {
 	background-color: var(--header-clr);
 	border-radius: 1rem;
@@ -57,6 +62,7 @@ const getRating = (rating) =>
 	aspect-ratio: 2/3;
 	box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
 	transition: all 300ms ease;
+	cursor: pointer;
 
 	& .card-poster {
 		width: 100%;
@@ -80,11 +86,6 @@ const getRating = (rating) =>
 			gap: 1rem;
 			opacity: 0;
 			transition: opacity 0.3s ease;
-
-			& .card-title {
-				font-size: 1.25rem;
-				font-weight: 700;
-			}
 
 			& .card-rating {
 				border-radius: 50%;
@@ -112,11 +113,6 @@ const getRating = (rating) =>
 				-webkit-line-clamp: 6;
 				-webkit-box-orient: vertical;
 				overflow: hidden;
-			}
-
-			& .card-buttons {
-				display: flex;
-				gap: 0.5rem;
 			}
 		}
 
