@@ -47,9 +47,9 @@ const getRating = (rating) =>
 
 <style scoped>
 & .card-title {
-	font-size: 1.25rem;
 	font-weight: 500;
 	margin-top: 1rem;
+	line-height: 1.2;
 }
 .card {
 	background-color: var(--header-clr);

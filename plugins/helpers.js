@@ -12,6 +12,10 @@ export default defineNuxtPlugin(() => {
 					.find((translation) => !!translation?.data?.overview)?.data
 			},
 			getRuntime: (runtimeInMinutes) => {
+				if (!runtimeInMinutes) {
+					return '0m'
+				}
+
 				const hours = Math.floor(runtimeInMinutes / 60)
 				const minutes = runtimeInMinutes % 60
 

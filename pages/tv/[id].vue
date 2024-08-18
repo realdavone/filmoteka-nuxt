@@ -5,15 +5,16 @@
 	>
 		<div class="info-wrapper">
 			<section class="info">
+				<Rating :rating="tv?.vote_average" :votes="tv?.vote_count" />
 				<h2
 					class="title"
 					:style="{ viewTransitionName: `tv-${useRoute().params.id}-title` }"
 				>
-					{{ title }} <Rating :rating="tv?.vote_average" :votes="tv?.vote_count" />
+					{{ title }}
 				</h2>
 				<div class="tags">
 					<Tag :label="$getFormattedDate(tv?.first_air_date)" />
-					<Tag :label="`${tv.number_of_episodes} epizód`" />
+					<Tag :label="`${tv?.number_of_episodes} epizód`" />
 					<Tag :label="`${$getRuntime(tv?.episode_run_time?.[0])}`" />
 				</div>
 				<h4 class="overview-title">Popis</h4>
@@ -97,8 +98,6 @@ const { data: tv, suspense } = useQuery({
 
 await suspense()
 
-console.log(tv.value)
-
 const playerUrl = computed(
 	() =>
 		`https://multiembed.mov/?video_id=${tv.value?.external_ids?.imdb_id}&s=${playerState.season}&e=${playerState.episode}`
@@ -108,11 +107,9 @@ const numberOfEpisodes = computed(
 	() => seasons.value?.[playerState.season - 1]?.episode_count
 )
 
-const info = computed(() => {
-	const translation = $getTranslation(tv.value?.translations?.translations)
-
-	return translation
-})
+const info = computed(() =>
+	$getTranslation(tv.value?.translations?.translations)
+)
 
 const seasons = computed(() =>
 	tv.value?.seasons?.filter((season) => season?.season_number > 0)
@@ -166,7 +163,7 @@ useSeoMeta({
 	gap: 1rem;
 	margin-block: 2rem;
 
-	& select {
+	select {
 		width: 150px;
 		padding: 0.5rem 1rem;
 		border-radius: 0.25rem;
@@ -179,6 +176,7 @@ useSeoMeta({
 		font-family: inherit;
 		font-weight: 500;
 		text-align: center;
+		background-color: black;
 	}
 }
 

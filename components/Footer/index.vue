@@ -1,8 +1,6 @@
 <template>
 	<footer>
 		<img src="/images/logo.svg" alt="logo" width="40" />
-
-		<p>© 2023. Všetky práva vyhradené.</p>
 	</footer>
 </template>
 

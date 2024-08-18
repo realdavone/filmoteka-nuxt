@@ -3,7 +3,7 @@
 		<section class="explore">
 			<header>
 				<Chip v-if="props.chipText" :label="props.chipText" />
-				<Heading element="h2">{{ props.title }}</Heading>
+				<Heading element="h2" style="margin-block: 1rem">{{ props.title }}</Heading>
 				<p class="description">{{ props.description }}</p>
 			</header>
 			<div class="cards">
@@ -38,7 +38,8 @@ const emit = defineEmits(['setFeaturedMovie'])
 
 const { data: items } = useQuery({
 	queryKey: [`trending/${props.type}`],
-	queryFn: () => $fetch(`/api/trending/${props.type}`)
+	queryFn: () => $fetch(`/api/trending/${props.type}`),
+	staleTime: Infinity
 })
 
 watch(
@@ -67,8 +68,7 @@ watch(
 
 header {
 	text-align: center;
-	border-bottom: 1px solid #ffffff10;
-	padding-bottom: 2rem;
+	padding-bottom: 1.5rem;
 }
 
 .description {
@@ -79,7 +79,7 @@ header {
 
 .cards {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
 	gap: 2rem;
 	margin-top: 3rem;
 	container: cards / inline-size;

@@ -47,13 +47,12 @@ const featuredStyles = computed(() => {
 
 .title {
 	font-size: clamp(1.5rem, 5vw, 3.75rem);
-	line-height: 1;
 	font-weight: 700;
 	margin-bottom: 1rem;
 }
 
 .description {
-	font-size: clamp(1rem, 5vw, 1.5rem);
+	font-size: 18px;
 	line-height: 1.5;
 	margin-bottom: 1.25rem;
 	opacity: 0.65;

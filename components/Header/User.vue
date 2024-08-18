@@ -1,17 +1,15 @@
 <template>
-	<div class="user" :data-active="isDropdownOpen">
-		<img
-			:src="user.image"
-			alt="user"
-			width="30"
-			@click="isDropdownOpen = !isDropdownOpen"
-		/>
+	<div class="user">
+		<div class="user-tag" @click="isDropdownOpen = !isDropdownOpen">
+			<div class="avatar">DK</div>
+
+			{{ user.username }}
+		</div>
 
 		<Transition name="fade">
 			<div v-show="isDropdownOpen" ref="dropdownRef" class="dropdown">
 				<div class="main-menu">
 					<div class="user-info">
-						<img :src="user.image" alt="user" width="36" />
 						<div>
 							<div class="name">
 								{{ user.name }}
@@ -21,7 +19,6 @@
 							</div>
 						</div>
 					</div>
-					<button class="button">Záložky</button>
 				</div>
 
 				<button @click="signOut" class="button">Odhlásiť sa</button>
@@ -31,14 +28,21 @@
 </template>
 
 <script setup>
-const { user, signOut } = useAuth()
+import { useMutation } from '@tanstack/vue-query'
+
+const { user, logout } = useAuth()
+
+const { mutate: signOut } = useMutation({
+	mutationFn: () => logout(),
+	onSuccess: () => {
+		navigateTo('/')
+	}
+})
 
 const isDropdownOpen = ref(false)
 const dropdownRef = ref(null)
 
-onClickOutside(dropdownRef, () => {
-	isDropdownOpen.value = false
-})
+onClickOutside(dropdownRef, () => (isDropdownOpen.value = false))
 </script>
 
 <style scoped>
@@ -47,31 +51,44 @@ onClickOutside(dropdownRef, () => {
 	align-items: center;
 	gap: 10px;
 	position: relative;
-	cursor: pointer;
 	flex-shrink: 0;
-	border-radius: 50%;
 	transition: 100ms ease-in-out all;
 
-	&[data-active='true'] {
-		box-shadow: 0 0 15px 0 #ffffff80;
+	.user-tag {
+		cursor: pointer;
+		font-weight: 500;
+		display: flex;
+		align-items: center;
+		gap: 0.625rem;
+
+		.avatar {
+			width: 2.275rem;
+			aspect-ratio: 1;
+			background-color: var(--primary-clr);
+			border-radius: 50%;
+			flex-shrink: 0;
+			display: grid;
+			place-items: center;
+			font-weight: 400;
+		}
 	}
 
-	& img {
+	img {
 		border-radius: 50%;
 		flex-shrink: 0;
 	}
 
-	& .name {
+	.name {
 		font-weight: 700;
 		margin-bottom: 0.25rem;
 		font-size: 1.15rem;
 	}
 
-	& .email {
+	.email {
 		font-size: 0.75rem;
 	}
 
-	& .dropdown {
+	.dropdown {
 		position: absolute;
 		right: 0;
 		top: calc(100% + 10px);
@@ -82,24 +99,24 @@ onClickOutside(dropdownRef, () => {
 		border: 1px solid #ffffff10;
 		width: max-content;
 
-		& .main-menu {
+		.main-menu {
 			border-bottom: 1px solid #ffffff10;
 			padding-bottom: 0.5rem;
 		}
 
-		& .user-info {
+		.user-info {
 			display: flex;
 			gap: 1rem;
 			margin-block: 0.5rem;
 
-			& img {
+			img {
 				border-radius: 50%;
 				flex-shrink: 0;
 				align-self: flex-start;
 			}
 		}
 
-		& .button {
+		.button {
 			all: unset;
 			cursor: pointer;
 			width: 100%;

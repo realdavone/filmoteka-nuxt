@@ -1,8 +1,12 @@
 export default defineNuxtPlugin(async () => {
+	if (import.meta.client) {
+		return
+	}
+
 	const runtimeConfig = useRuntimeConfig()
 
 	const getMovieGenres = async () =>
-		await $fetch(`https://api.themoviedb.org/3/genre/movie/list`, {
+		$fetch(`https://api.themoviedb.org/3/genre/movie/list`, {
 			query: {
 				language: 'sk-SK'
 			},
@@ -12,7 +16,7 @@ export default defineNuxtPlugin(async () => {
 		})
 
 	const getTvGenres = async () =>
-		await $fetch(`https://api.themoviedb.org/3/genre/tv/list`, {
+		$fetch(`https://api.themoviedb.org/3/genre/tv/list`, {
 			query: {
 				language: 'sk-SK'
 			},

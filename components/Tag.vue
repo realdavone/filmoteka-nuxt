@@ -19,5 +19,6 @@ const props = defineProps({
 	color: white;
 	font-weight: 600;
 	display: inline-block;
+	font-family: monospace;
 }
 </style>

@@ -15,13 +15,15 @@
 				</template>
 				<Button
 					v-if="status === 'unauthenticated'"
-					@click="$router.push('/auth/signin')"
+					@click="() => $refs.modalAuthRef.open()"
 					data-login
 					>Prihlásiť sa</Button
 				>
 				<HeaderUser v-else />
 			</nav>
 		</LayoutWrapper>
+
+		<ModalAuth ref="modalAuthRef" />
 	</header>
 </template>
 
@@ -37,11 +39,12 @@ header {
 }
 
 .header {
-	height: 66px;
+	height: var(--header-height);
 	display: flex;
 	align-items: center;
 	gap: 2rem;
 	container: header / inline-size;
+	background-color: black !important;
 
 	& .logo {
 		font-size: 1.25rem;

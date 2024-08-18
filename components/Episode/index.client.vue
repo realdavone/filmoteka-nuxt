@@ -54,22 +54,18 @@ const { data: episode, isLoading } = useQuery({
 			episode: props.episode
 		}
 	]),
-	staleTime: Infinity,
 	queryFn: () =>
 		$fetch(`/api/tv/${props.seriesId}/episode`, {
 			headers: useRequestHeaders(['cookie']),
 			query: { s: props.season, e: props.episode }
 		}),
+	staleTime: Infinity,
 	enabled: props.enabled
 })
 
-const info = computed(() => {
-	const translation = useNuxtApp().$getTranslation(
-		episode.value?.translations?.translations
-	)
-
-	return translation
-})
+const info = computed(() =>
+	useNuxtApp().$getTranslation(episode.value?.translations?.translations)
+)
 </script>
 
 <style scoped>

@@ -1,5 +1,6 @@
 <template>
 	<FeaturedSection :movie="featuredMovie" />
+
 	<ExploreSection
 		chipText="Populárne filmy"
 		title="Naše najpopulárnejšie filmy"
@@ -8,6 +9,7 @@
 		@setFeaturedMovie="featuredMovie = $event"
 		background="tertiary"
 	/>
+
 	<ExploreSection
 		chipText="Populárne seriály"
 		title="Naše najpopulárnejšie seriály"

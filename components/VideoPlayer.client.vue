@@ -22,13 +22,13 @@
 </template>
 
 <script setup>
-const { status } = useAuth()
-
 const props = defineProps({
 	url: {
 		type: String
 	}
 })
+
+const { status } = useAuth()
 
 const hasPlayBeenClicked = ref(false)
 

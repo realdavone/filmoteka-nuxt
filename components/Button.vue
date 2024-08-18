@@ -13,13 +13,14 @@ const props = defineProps({
 
 <style scoped>
 .button {
-	padding: 0.5rem 1rem 0.6rem;
-	border-radius: 0.25rem;
+	padding: 0.75rem 1rem;
+	line-height: 1;
+	border-radius: 0.5rem;
 	border: none;
 	background-color: var(--primary-clr);
 	color: white;
-	font-size: 1rem;
-	font-weight: 700;
+	font-size: 0.875rem;
+	font-weight: 600;
 	cursor: pointer;
 }
 </style>

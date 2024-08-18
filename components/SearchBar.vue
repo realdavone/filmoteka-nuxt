@@ -84,9 +84,10 @@ onMounted(() => {
 	outline: 1px solid #ffffff30;
 	width: 100%;
 	max-width: 320px;
+	transition: box-shadow 150ms ease;
 
 	&:focus-within {
-		box-shadow: 0 0 3px 1px var(--primary-clr);
+		box-shadow: 0 0 0px 4px var(--secondary-clr);
 	}
 }
 

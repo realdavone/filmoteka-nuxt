@@ -5,12 +5,13 @@
 	>
 		<div class="info-wrapper">
 			<section class="info">
+				<Rating :rating="movie?.vote_average" :votes="movie?.vote_count" />
+
 				<h2
 					class="title"
 					:style="{ viewTransitionName: `movie-${useRoute().params.id}-title` }"
 				>
 					{{ title }}
-					<Rating :rating="movie?.vote_average" :votes="movie?.vote_count" />
 				</h2>
 				<div class="tags">
 					<Tag :label="$getFormattedDate(movie?.release_date)" />
