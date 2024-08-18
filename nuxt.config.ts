@@ -2,7 +2,9 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		tmdbApiKey: process.env.TMDB_API_KEY,
 		tmdbBaseUrl: process.env.TMDB_BASE_URL,
-		pocketbaseUrl: process.env.POCKETBASE_URL
+		public: {
+			pocketbaseUrl: process.env.POCKETBASE_URL
+		}
 	},
 
 	css: ['assets/main.css'],

@@ -24,6 +24,10 @@
 				v-model="credentials.password"
 			/>
 
+			<p v-if="error" class="error">
+				{{ error?.message }}
+			</p>
+
 			<Button type="submit">Prihlásiť sa</Button>
 		</form>
 	</dialog>
@@ -41,11 +45,14 @@ const credentials = reactive({
 	password: ''
 })
 
-const { mutate: signIn } = useMutation({
+const { mutate: signIn, error } = useMutation({
 	mutationFn: () =>
 		login({ username: credentials.username, password: credentials.password }),
 	onSuccess: (data) => {
 		close()
+
+		credentials.username = ''
+		credentials.password = ''
 	}
 })
 
@@ -125,5 +132,15 @@ form {
 	button {
 		margin-top: 1rem;
 	}
+}
+
+.error {
+	color: crimson;
+	font-size: 0.875rem;
+	background-color: rgb(220, 20, 60, 0.1);
+	padding: 0.5rem;
+	border-radius: 0.25rem;
+	border: 1px solid crimson;
+	text-align: center;
 }
 </style>
