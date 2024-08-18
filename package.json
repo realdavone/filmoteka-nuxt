@@ -12,6 +12,7 @@
 	},
 	"devDependencies": {
 		"@nuxt/devtools": "latest",
+		"@nuxt/icon": "^1.4.5",
 		"@vueuse/nuxt": "^10.7.0",
 		"nuxt": "^3.12.4",
 		"vue": "^3.3.10",

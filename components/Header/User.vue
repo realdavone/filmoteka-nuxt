@@ -1,9 +1,13 @@
 <template>
 	<div class="user">
 		<div class="user-tag" @click="isDropdownOpen = !isDropdownOpen">
-			<div class="avatar">DK</div>
+			<div class="avatar">
+				{{ user.username?.slice(0, 1) }}
+			</div>
 
-			{{ user.username }}
+			<span>
+				{{ user.username }}
+			</span>
 		</div>
 
 		<Transition name="fade">
@@ -144,5 +148,11 @@ onClickOutside(dropdownRef, () => (isDropdownOpen.value = false))
 .fade-enter-from,
 .fade-leave-to {
 	opacity: 0;
+}
+
+@media (max-width: 768px) {
+	.user-tag span {
+		display: none;
+	}
 }
 </style>

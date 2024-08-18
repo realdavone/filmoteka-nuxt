@@ -10,8 +10,14 @@
 			</div>
 			<nav>
 				<template v-if="status === 'authenticated'">
-					<NuxtLink to="/discover" class="button"> Objaviť </NuxtLink>
-					<NuxtLink to="/search" class="button">Hľadať</NuxtLink>
+					<NuxtLink to="/discover">
+						<Icon name="prime:globe" size="1.5rem" />
+						<span class="label">Objaviť</span>
+					</NuxtLink>
+					<NuxtLink to="/search">
+						<Icon name="prime:search" size="1.5rem" />
+						<span class="label">Hľadať</span>
+					</NuxtLink>
 				</template>
 				<Button
 					v-if="status === 'unauthenticated'"
@@ -46,36 +52,50 @@ header {
 	container: header / inline-size;
 	background-color: black !important;
 
-	& .logo {
+	.logo {
 		font-size: 1.25rem;
 		font-weight: 700;
 
-		& a {
+		a {
 			display: flex;
 			align-items: center;
 			gap: 0.75rem;
 		}
 	}
 
-	& nav {
+	nav {
 		margin-left: auto;
 		display: flex;
-		gap: 20px;
+		gap: 1rem;
 		align-items: center;
 		justify-content: flex-end;
 		width: 100%;
+
+		a {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+		}
 	}
 
-	@container header  (max-width: 768px) {
+	@container header (max-width: 768px) {
 		.logo {
-			& span {
+			span {
+				display: none;
+			}
+		}
+
+		nav {
+			gap: 0.25rem;
+
+			a .label {
 				display: none;
 			}
 		}
 	}
 }
 
-.button:not([data-login]) {
+a:not([data-login]) {
 	font-weight: 500;
 	padding-inline: 0.5rem;
 

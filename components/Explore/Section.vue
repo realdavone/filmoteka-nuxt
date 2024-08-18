@@ -80,7 +80,7 @@ header {
 .cards {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-	gap: 2rem;
+	gap: 1rem;
 	margin-top: 3rem;
 	container: cards / inline-size;
 }
