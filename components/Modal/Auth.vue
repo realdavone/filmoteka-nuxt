@@ -1,5 +1,5 @@
 <template>
-	<dialog ref="dialogRef">
+	<dialog ref="dialogRef" @close="isOpen = false">
 		<button class="close-button" @click="close">&times;</button>
 
 		<div class="image-container">
@@ -85,6 +85,7 @@ dialog {
 	max-width: min(450px, calc(100% - 2rem));
 	width: 100%;
 	border-radius: 1rem;
+	box-shadow: 0 0 35px 0px rgba(255, 255, 255, 0.25);
 
 	.image-container {
 		img {
@@ -137,7 +138,7 @@ dialog {
 	}
 
 	&::backdrop {
-		background-color: rgba(0, 0, 0, 0.5);
+		background-color: rgba(0, 0, 0, 0.75);
 		backdrop-filter: blur(2px);
 	}
 }

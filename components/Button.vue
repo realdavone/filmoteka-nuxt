@@ -22,5 +22,10 @@ const props = defineProps({
 	font-size: 0.875rem;
 	font-weight: 600;
 	cursor: pointer;
+	transition: all 100ms ease-in-out;
+
+	&:active {
+		scale: 0.96;
+	}
 }
 </style>

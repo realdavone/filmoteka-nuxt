@@ -3,9 +3,6 @@
 		<section class="featured">
 			<div>
 				<h2 class="title">{{ props.movie?.title }}</h2>
-				<p class="description">
-					Nami vybraný film ktorý máte na dosah ruky. Sledujte teraz!
-				</p>
 				<Button @click="useRouter().push(`/movie/${props.movie?.id}`)"
 					>Sledovať teraz</Button
 				>
@@ -49,13 +46,6 @@ const featuredStyles = computed(() => {
 	font-size: clamp(1.5rem, 5vw, 3.75rem);
 	font-weight: 700;
 	margin-bottom: 1rem;
-}
-
-.description {
-	font-size: 18px;
-	line-height: 1.5;
-	margin-bottom: 1.25rem;
-	opacity: 0.65;
 }
 
 @media (max-width: 768px) {
