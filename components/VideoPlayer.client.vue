@@ -2,7 +2,7 @@
 	<div class="player">
 		<div v-if="status === 'unauthenticated'" class="login-wrapper">
 			<p>Prehrávač je prístupný iba prihláseným užívateľom.</p>
-			<Button @click="$router.push('/auth/signin')">Prihlásiť sa</Button>
+			<Button @click="open">Prihlásiť sa</Button>
 		</div>
 		<template v-else>
 			<div v-if="!hasPlayBeenClicked" class="play-wrapper">
@@ -29,6 +29,7 @@ const props = defineProps({
 })
 
 const { status } = useAuth()
+const { open } = useAuthModal()
 
 const hasPlayBeenClicked = ref(false)
 
@@ -73,8 +74,8 @@ defineExpose({ play })
 	padding: 1rem;
 	gap: 1rem;
 	height: 100%;
-	font-size: clamp(1rem, 5vw, 1.5rem);
-	font-weight: clamp(500, 5vw, 700);
+	font-size: 0.875rem;
+	font-weight: 500;
 
 	& p {
 		text-align: center;

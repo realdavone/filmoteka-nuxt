@@ -19,22 +19,20 @@
 						<span class="label">Hľadať</span>
 					</NuxtLink>
 				</template>
-				<Button
-					v-if="status === 'unauthenticated'"
-					@click="() => $refs.modalAuthRef.open()"
-					data-login
+				<Button v-if="status === 'unauthenticated'" @click="open" data-login
 					>Prihlásiť sa</Button
 				>
 				<HeaderUser v-else />
 			</nav>
 		</LayoutWrapper>
 
-		<ModalAuth ref="modalAuthRef" />
+		<ModalAuth />
 	</header>
 </template>
 
 <script setup>
 const { status } = useAuth()
+const { open } = useAuthModal()
 </script>
 
 <style scoped>

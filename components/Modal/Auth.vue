@@ -37,6 +37,7 @@
 import { useMutation } from '@tanstack/vue-query'
 
 const { login } = useAuth()
+const { isOpen, close } = useAuthModal()
 
 const dialogRef = ref(null)
 
@@ -48,7 +49,7 @@ const credentials = reactive({
 const { mutate: signIn, error } = useMutation({
 	mutationFn: () =>
 		login({ username: credentials.username, password: credentials.password }),
-	onSuccess: (data) => {
+	onSuccess: () => {
 		close()
 
 		credentials.username = ''
@@ -56,12 +57,12 @@ const { mutate: signIn, error } = useMutation({
 	}
 })
 
-const open = () => dialogRef.value.showModal()
-const close = () => dialogRef.value.close()
-
-defineExpose({
-	open,
-	close
+watch(isOpen, (value) => {
+	if (value) {
+		dialogRef.value.showModal()
+	} else {
+		dialogRef.value.close()
+	}
 })
 </script>
 

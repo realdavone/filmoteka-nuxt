@@ -20,5 +20,9 @@ const props = defineProps({
 	font-weight: 600;
 	display: inline-block;
 	font-family: monospace;
+
+	&:empty {
+		display: none;
+	}
 }
 </style>

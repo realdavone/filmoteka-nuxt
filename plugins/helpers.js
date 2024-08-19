@@ -13,7 +13,7 @@ export default defineNuxtPlugin(() => {
 			},
 			getRuntime: (runtimeInMinutes) => {
 				if (!runtimeInMinutes) {
-					return '0m'
+					return ''
 				}
 
 				const hours = Math.floor(runtimeInMinutes / 60)
