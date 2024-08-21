@@ -101,7 +101,6 @@ onClickOutside(dropdownRef, () => (isDropdownOpen.value = false))
 		padding: 0.75rem;
 		border-radius: 0.75rem;
 		border: 1px solid #ffffff10;
-		width: max-content;
 
 		.main-menu {
 			border-bottom: 1px solid #ffffff10;
@@ -123,13 +122,13 @@ onClickOutside(dropdownRef, () => (isDropdownOpen.value = false))
 		.button {
 			all: unset;
 			cursor: pointer;
-			width: 100%;
 			margin-top: 10px;
 			text-align: center;
-			padding: 5px 0 7px;
+			padding: 0.5rem 0.75rem;
 			border-radius: 0.25rem;
 			transition: 200ms background-color ease;
 			font-weight: 500;
+			white-space: nowrap;
 
 			@media (hover: hover) {
 				&:hover {
