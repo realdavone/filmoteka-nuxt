@@ -1,23 +1,7 @@
 <template>
 	<form class="search-bar" @submit.prevent="handleSearch">
 		<div class="input">
-			<svg
-				v-if="!props.isLoading"
-				xmlns="http://www.w3.org/2000/svg"
-				fill="none"
-				viewBox="0 0 24 24"
-				stroke-width="1.5"
-				stroke="currentColor"
-				class="w-6 h-6"
-				height="16"
-			>
-				<path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-				/>
-			</svg>
-
+			<Icon v-if="!props.isLoading" name="prime:search" size="28" />
 			<div v-else class="loader"></div>
 
 			<input
@@ -28,8 +12,8 @@
 				v-model="search"
 				required
 			/>
+			<button type="submit" tabindex="0">Hľadať</button>
 		</div>
-		<button type="submit" tabindex="0">Hľadať</button>
 	</form>
 </template>
 
@@ -60,15 +44,15 @@ onMounted(() => {
 
 <style scoped>
 .search-bar {
-	display: inline-flex;
+	display: flex;
 	align-items: center;
 	justify-content: center;
 	gap: 0.5rem;
-	width: 100%;
+	width: min(500px, 100%);
+	margin-inline: auto;
 
 	& button {
 		all: unset;
-		padding: 0.5rem 0.75rem 0.6rem;
 		border-radius: 0.25rem;
 		font-weight: 500;
 		cursor: pointer;
@@ -81,13 +65,13 @@ onMounted(() => {
 	background-color: var(--primary-background-clr);
 	padding: 0.5rem 0.75rem 0.6rem;
 	border-radius: 0.25rem;
-	outline: 1px solid #ffffff30;
+	border: 2px solid #ffffff20;
 	width: 100%;
-	max-width: 320px;
 	transition: box-shadow 150ms ease;
 
 	&:focus-within {
-		box-shadow: 0 0 0px 4px var(--secondary-clr);
+		border-color: rgb(255, 255, 255, 1);
+		box-shadow: 0 0 0 4px rgb(255, 255, 255, 0.25);
 	}
 }
 

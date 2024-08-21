@@ -38,14 +38,14 @@ const props = defineProps({
 	margin-top: 2rem;
 	margin-bottom: 2rem;
 
-	& button {
-		all: unset;
+	button {
+		outline: none;
+		border: none;
+		width: 2rem;
+		height: 2rem;
+		background-color: rgba(255, 255, 255, 0.1);
+		border-radius: 8px;
 		cursor: pointer;
-		color: var(--primary-clr);
-		font-weight: 500;
-		font-size: 1.25rem;
-		padding: 0.25rem 0.5rem;
-		border-radius: 0.25rem;
 
 		&:disabled {
 			cursor: not-allowed;
@@ -53,7 +53,7 @@ const props = defineProps({
 		}
 	}
 
-	& span {
+	span {
 		font-size: 1.25rem;
 		font-weight: 500;
 	}

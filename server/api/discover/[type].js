@@ -23,6 +23,12 @@ export default defineCachedEventHandler(
 	},
 	{
 		maxAge: 60 * 60,
-		getKey: (event) => `discover/${event.context.params.type}`
+		getKey: (event) => {
+			const query = getQuery(event)
+
+			return `discover/type=${event.context.params.type}/page=${
+				query.page ?? 1
+			}/genre=${query.genre ?? ''}`
+		}
 	}
 )

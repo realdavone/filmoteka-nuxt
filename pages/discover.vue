@@ -20,17 +20,24 @@
 				</option>
 			</select>
 		</div>
+
 		<p v-if="!$route.query.type" class="no-type">
 			Vyberte si typ a žáner ktorý chcete objaviť.
 		</p>
 		<template v-else>
 			<List heading="Knižnica" :showMore="false" :isLoaded="!isLoading">
-				<ListItem
-					v-for="title in titles?.results"
-					:key="title.id"
-					:item="title"
-					:fallback-media-type="$route.query.type"
-				/>
+				<template v-if="status === 'pending'">
+					<div class="skeleton" v-for="i in 8" :key="i"></div>
+				</template>
+
+				<template v-else-if="status === 'success'">
+					<ListItem
+						v-for="title in titles?.results"
+						:key="title.id"
+						:item="title"
+						:fallback-media-type="$route.query.type"
+					/>
+				</template>
 			</List>
 			<Pagination
 				:current="!!$route.query.page ? +$route.query.page : 1"
@@ -55,7 +62,11 @@ const genresOptions = computed(() => {
 	return genres.value[useRoute().query.type]
 })
 
-const { data: titles, isLoading } = useQuery({
+const {
+	data: titles,
+	isLoading,
+	status
+} = useQuery({
 	queryKey: computed(() => [
 		`discover`,
 		{
@@ -100,6 +111,7 @@ useSeoMeta({
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
+	padding-block: 1rem;
 
 	& select {
 		padding: 0.5rem 1rem;
@@ -113,8 +125,24 @@ useSeoMeta({
 
 .no-type {
 	text-align: center;
-	margin-top: 2rem;
-	font-size: 1.25rem;
-	font-weight: 600;
+	margin-top: 1rem;
+	font-size: 0.875rem;
+	font-weight: 500;
+}
+
+.skeleton {
+	height: 10rem;
+	background-color: rgb(255, 255, 255, 0.1);
+	border-radius: 0.5rem;
+	animation: pulse 1s linear infinite alternate;
+}
+
+@keyframes pulse {
+	0% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 </style>
