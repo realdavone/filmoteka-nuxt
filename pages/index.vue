@@ -7,7 +7,7 @@
 		description="Prezrite si naše najpopulárnejšie filmy. Aktualizované denne."
 		type="movie"
 		@setFeaturedMovie="featuredMovie = $event"
-		background="tertiary"
+		wrapperStyle="background: var(--tertiary-background-clr)"
 	/>
 
 	<ExploreSection

@@ -1,5 +1,5 @@
 <template>
-	<div class="wrapper" :style="style">
+	<div class="wrapper" :data-bleed="props.bleed">
 		<slot />
 	</div>
 </template>
@@ -23,36 +23,15 @@ const props = defineProps({
 		default: false
 	}
 })
-
-const style = computed(() => {
-	const background = !!props.backgroundImage
-		? {
-				backgroundSize: 'cover',
-				backgroundRepeat: 'no-repeat',
-				backgroundPosition: 'center',
-				backgroundImage: `
-      linear-gradient(to left, transparent, var(--primary-background-clr)),
-      url(${props.backgroundImage})
-    `
-		  }
-		: {
-				backgroundColor: `var(--${props.background}-background-clr${
-					props.alpha ? '-a' : ''
-				})`
-		  }
-
-	return {
-		...(!props.bleed
-			? { paddingInline: 'clamp(1rem, 0.7368rem + 1.1228vw, 2rem)' }
-			: {}),
-		...background
-	}
-})
 </script>
 
 <style scoped>
 .wrapper {
 	max-width: 1800px;
 	margin: 0 auto;
+
+	&[data-bleed] {
+		padding-inline: 1.5rem;
+	}
 }
 </style>

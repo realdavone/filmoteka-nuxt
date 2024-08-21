@@ -1,7 +1,15 @@
 <template>
 	<LayoutWrapper
-		style="padding-block: 6rem"
-		:backgroundImage="`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${movie?.backdrop_path}`"
+		:style="{
+			paddingBlock: '6rem',
+			backgroundSize: 'cover',
+			backgroundRepeat: 'no-repeat',
+			backgroundPosition: 'center',
+			backgroundImage: `
+      linear-gradient(to left, var(--primary-background-clr-a), var(--primary-background-clr-a)),
+      url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${movie?.backdrop_path})
+      `
+		}"
 	>
 		<div class="info-wrapper">
 			<section class="info">
@@ -44,7 +52,7 @@
 			</section>
 		</div>
 	</LayoutWrapper>
-	<LayoutWrapper background="black" bleed>
+	<LayoutWrapper style="background-color: black" bleed>
 		<VideoPlayer
 			ref="videoPlayer"
 			:url="`https://multiembed.mov/?video_id=${movie?.external_ids?.imdb_id}`"

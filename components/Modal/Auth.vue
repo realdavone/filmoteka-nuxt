@@ -161,8 +161,14 @@ form {
 		border-radius: 0.25rem;
 		border: 2px solid #ffffff20;
 		font-size: 1rem;
-		transition: 100ms ease-in-out all;
+		transition: 200ms ease-in-out all;
 		margin-bottom: 0.5rem;
+		outline: none;
+
+		&:focus {
+			border-color: rgb(255, 255, 255, 0.5);
+			box-shadow: 0 0 0 4px rgb(255, 255, 255, 0.25);
+		}
 	}
 
 	button {

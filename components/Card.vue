@@ -63,6 +63,7 @@ const getRating = (rating) =>
 	box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
 	transition: all 300ms ease;
 	cursor: pointer;
+	isolation: isolate;
 
 	& .card-poster {
 		width: 100%;

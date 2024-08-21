@@ -33,15 +33,20 @@ const emit = defineEmits(['showMore'])
 .list {
 	margin-top: 2rem;
 
-	& header {
+	header {
 		margin-bottom: 1.75rem;
-		border-bottom: 2px solid #ffffff20;
-		padding-bottom: 1rem;
+		padding-block: 1rem;
 		display: flex;
 		align-items: center;
 		gap: 1rem;
+		background-color: var(--tertiary-background-clr);
+		margin-inline: -1.5rem;
+		padding-inline: 1.5rem;
+		position: sticky;
+		top: 90px;
+		z-index: 2;
 
-		& button {
+		button {
 			all: unset;
 			font-weight: 500;
 			cursor: pointer;
@@ -50,12 +55,12 @@ const emit = defineEmits(['showMore'])
 		}
 	}
 
-	& h2 {
+	h2 {
 		font-size: 2rem;
 		font-weight: 500;
 	}
 
-	& .items {
+	.items {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 		gap: 2rem;

@@ -1,5 +1,5 @@
 <template>
-	<LayoutWrapper :background="props.background">
+	<LayoutWrapper :style="$attrs.wrapperStyle">
 		<section class="explore">
 			<header>
 				<Chip v-if="props.chipText" :label="props.chipText" />
@@ -28,10 +28,6 @@ const props = defineProps({
 	},
 	type: {
 		type: String
-	},
-	background: {
-		type: String,
-		default: 'primary'
 	}
 })
 const emit = defineEmits(['setFeaturedMovie'])

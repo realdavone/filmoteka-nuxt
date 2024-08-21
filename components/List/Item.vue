@@ -69,6 +69,7 @@ const imageSource = computed(() => {
 	display: flex;
 	flex-direction: column;
 	height: 10rem;
+	isolation: isolate;
 
 	& .image {
 		align-self: center;
