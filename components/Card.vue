@@ -53,7 +53,7 @@ const getRating = (rating) =>
 }
 .card {
 	background-color: var(--header-clr);
-	border-radius: 1rem;
+	border-radius: 0.875rem;
 	display: flex;
 	flex-direction: column;
 	gap: 1.25rem;

@@ -123,6 +123,10 @@ const handleShowMore = (type) => {
 	useRouter().push({ path: `/search/${type}`, query })
 }
 
+definePageMeta({
+	middleware: ['auth']
+})
+
 useSeoMeta({
 	title: `Vyhľadávanie ${useRoute().query.q ? '- ' + useRoute().query.q : ''}`
 })

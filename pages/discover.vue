@@ -99,6 +99,10 @@ const updatePagination = (page) => {
 	useRouter().push({ query })
 }
 
+definePageMeta({
+	middleware: ['auth']
+})
+
 useSeoMeta({
 	title: 'Objavovanie'
 })
