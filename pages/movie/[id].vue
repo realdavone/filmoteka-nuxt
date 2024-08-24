@@ -110,7 +110,7 @@ useSeoMeta({
 .title {
 	font-size: clamp(1.5rem, 5vw, 3.75rem);
 	font-weight: 700;
-	margin-bottom: 1rem;
+	margin-block: 1rem;
 	line-height: 1.2;
 	text-wrap: balance;
 }

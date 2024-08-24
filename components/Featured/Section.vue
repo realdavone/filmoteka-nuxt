@@ -1,17 +1,27 @@
 <template>
 	<LayoutWrapper :style="featuredStyles">
 		<section class="featured">
-			<img
-				class="poster"
-				:src="`https://image.tmdb.org/t/p/w500${props.movie?.poster_path}`"
-			/>
-			<div class="info">
-				<h2 class="title">{{ props.movie?.title }}</h2>
-				<p>{{ props.movie?.overview }}</p>
-				<Button @click="useRouter().push(`/movie/${props.movie?.id}`)"
-					>Sledovať teraz</Button
+			<h2 class="title">{{ props.movie?.title }}</h2>
+
+			<p>{{ props.movie?.overview }}</p>
+
+			<div class="meta">
+				<Rating
+					:rating="props.movie?.vote_average"
+					:votes="props.movie?.vote_count"
+				/>
+
+				<span
+					v-for="genreId in props.movie?.genre_ids"
+					:key="genreId"
+					class="genre"
 				>
+					<span> {{ getGenre(genreId) }} </span>
+				</span>
 			</div>
+			<Button @click="useRouter().push(`/movie/${props.movie?.id}`)">
+				Sledovať teraz</Button
+			>
 		</section>
 	</LayoutWrapper>
 </template>
@@ -22,6 +32,16 @@ const props = defineProps({
 		type: Object
 	}
 })
+
+const genres = useState('genres')
+
+const getGenre = (genreId) => {
+	if (!genres.value) {
+		return
+	}
+
+	return genres.value.movie.find((genre) => genre.id === genreId)?.name
+}
 
 const featuredStyles = computed(() => {
 	if (!props.movie?.backdrop_path) return {}
@@ -42,26 +62,16 @@ const featuredStyles = computed(() => {
 .featured {
 	padding-block: 6rem;
 	display: flex;
+	flex-direction: column;
 	align-items: flex-start;
-	gap: 2rem;
+	justify-content: flex-end;
 	min-height: 70vh;
 }
 
-.info {
-	max-width: 600px;
-}
-
-.poster {
-	width: 160px;
-	aspect-ratio: 2/3;
-	object-fit: cover;
-	border-radius: 1rem;
-}
-
 .title {
-	font-size: clamp(1.5rem, 5vw, 3rem);
+	font-size: clamp(1.5rem, 5vw, 4rem);
 	font-weight: 600;
-	margin-bottom: 0.125rem;
+	margin-bottom: 0.875rem;
 	line-height: 1.1;
 }
 
@@ -72,8 +82,25 @@ p {
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	font-size: 0.875rem;
+	font-size: clamp(0.875rem, 2vw, 1.25rem);
 	opacity: 0.8;
+}
+
+.meta {
+	margin-bottom: 1rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	align-items: center;
+
+	.genre {
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: rgb(255, 255, 255, 0.8);
+		background-color: rgb(255, 255, 255, 0.1);
+		padding: 0.125rem 0.5rem;
+		border-radius: 0.25rem;
+	}
 }
 
 @media (max-width: 768px) {

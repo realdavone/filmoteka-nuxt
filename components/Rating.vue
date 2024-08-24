@@ -1,10 +1,24 @@
 <template>
-	<div class="rating">
-		<div class="stars">
-			<div v-for="i in 5" :key="i" class="star" :data-fill="getFill(i)" />
-		</div>
+	<div class="rating" :data-variation="props.variation">
+		<svg
+			class="star"
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<path
+				d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.62L12 2L9.19 8.62L2 9.24L7.46 13.97L5.82 21L12 17.27Z"
+				fill="currentColor"
+			/>
+		</svg>
 
-		<span :data-votes="`(${props.votes})`">{{ getRating(props.rating) }}</span>
+		<span class="rating">
+			{{ getRating(props.rating) }}
+		</span>
+
+		<span class="votes">{{ props.votes }}</span>
 	</div>
 </template>
 
@@ -15,6 +29,10 @@ const props = defineProps({
 	},
 	votes: {
 		type: Number
+	},
+	variation: {
+		type: String,
+		default: 'regular'
 	}
 })
 
@@ -25,61 +43,58 @@ const props = defineProps({
  */
 const getRating = (rating) =>
 	new Intl.NumberFormat('sk-SK', { maximumFractionDigits: 1 }).format(rating)
-
-function getFill(index) {
-	if (index * 2 > props.rating) {
-		return 'empty'
-	}
-
-	return 'full'
-}
 </script>
 
 <style scoped>
 .rating {
-	display: inline-flex;
-	align-items: center;
-	font-weight: 500;
-	font-size: clamp(1.25rem, 5vw, 1.5rem);
-	font-family: monospace;
-	align-items: center;
-	gap: 0.75rem;
-
-	span::after {
-		content: attr(data-votes);
-		margin-inline-start: 0.5em;
-		font-size: 0.5em;
+	&[data-variation='regular'] {
+		--rating-font-size: 1.25rem;
+		--star-size: 1.5rem;
+		--padding: 0.125rem 0.5rem;
 	}
-}
 
-.stars {
+	&[data-variation='small'] {
+		--rating-font-size: 0.875rem;
+		--star-size: 1.25rem;
+		--padding: 0.0625rem 0.375rem;
+	}
+
+	&[data-variation='large'] {
+		--rating-font-size: 1.5rem;
+		--star-size: 2rem;
+		--padding: 0.25rem 0.75rem;
+	}
+
+	width: fit-content;
+	background-color: gold;
+	color: black;
+	padding: var(--padding);
 	display: inline-flex;
 	align-items: center;
-	gap: 8px;
 
 	.star {
-		width: 1.5rem;
-		height: 1.5rem;
-		border-radius: 50%;
-		clip-path: polygon(
-			50% 0%,
-			61% 35%,
-			98% 35%,
-			68% 57%,
-			79% 91%,
-			50% 70%,
-			21% 91%,
-			32% 57%,
-			2% 35%,
-			39% 35%
-		);
+		width: var(--star-size);
+		height: auto;
+		flex-shrink: 0;
+	}
 
-		&[data-fill='full'] {
-			background-color: gold;
+	.rating {
+		font-size: var(--rating-font-size);
+	}
+
+	.votes {
+		font-size: 0.875rem;
+
+		&:empty {
+			display: none;
 		}
 
-		&[data-fill='empty'] {
-			background-color: white;
+		&::before {
+			content: '(';
+		}
+
+		&::after {
+			content: ')';
 		}
 	}
 }

@@ -14,9 +14,7 @@
 				/>
 			</div>
 			<div class="card-overlay">
-				<div class="card-rating">
-					{{ getRating(item.vote_average) }}
-				</div>
+				<Rating :rating="item.vote_average" variation="small" />
 				<div class="card-description">
 					{{ item.overview }}
 				</div>
