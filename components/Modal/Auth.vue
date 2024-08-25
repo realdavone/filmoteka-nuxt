@@ -16,6 +16,7 @@
 			<form @submit.prevent="signIn">
 				<label for="username">Používateľské meno</label>
 				<input
+					ref="usernameRef"
 					id="username"
 					name="username"
 					required
@@ -35,7 +36,7 @@
 					{{ error?.message }}
 				</p>
 
-				<Button type="submit">Prihlásiť sa</Button>
+				<Button type="submit" :disabled="status === 'pending'">Prihlásiť sa</Button>
 			</form>
 		</div>
 	</dialog>
@@ -48,13 +49,18 @@ const { login } = useAuth()
 const { isOpen, close } = useAuthModal()
 
 const dialogRef = ref(null)
+const usernameRef = ref(null)
 
 const credentials = reactive({
 	username: '',
 	password: ''
 })
 
-const { mutate: signIn, error } = useMutation({
+const {
+	mutate: signIn,
+	error,
+	status
+} = useMutation({
 	mutationFn: () =>
 		login({ username: credentials.username, password: credentials.password }),
 	onSuccess: () => {
@@ -68,6 +74,8 @@ const { mutate: signIn, error } = useMutation({
 watch(isOpen, (value) => {
 	if (value) {
 		dialogRef.value.showModal()
+
+		usernameRef.value.focus()
 	} else {
 		dialogRef.value.close()
 	}

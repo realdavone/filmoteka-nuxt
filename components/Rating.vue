@@ -38,11 +38,18 @@ const props = defineProps({
 
 /**
  * Format rating to string with comma separated fractional part
- * @param {number} rating
- * @returns {string}
+ * @param {number} rating Rating
+ * @returns {string} Formatted rating
  */
-const getRating = (rating) =>
-	new Intl.NumberFormat('sk-SK', { maximumFractionDigits: 1 }).format(rating)
+const getRating = (rating) => {
+	if (!rating) {
+		return null
+	}
+
+	return new Intl.NumberFormat('sk-SK', { maximumFractionDigits: 1 }).format(
+		rating
+	)
+}
 </script>
 
 <style scoped>
@@ -78,8 +85,13 @@ const getRating = (rating) =>
 		flex-shrink: 0;
 	}
 
+	&:has(.rating:empty) {
+		display: none;
+	}
+
 	.rating {
 		font-size: var(--rating-font-size);
+		font-weight: 600;
 	}
 
 	.votes {

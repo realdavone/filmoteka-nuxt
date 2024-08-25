@@ -40,7 +40,7 @@
 								query: { type: 'tv', genre: genre.id }
 							})
 						"
-						clickable
+						:clickable="status === 'authenticated'"
 					/>
 				</div>
 				<Button

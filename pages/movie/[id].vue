@@ -40,7 +40,7 @@
 								query: { type: 'movie', genre: genre.id }
 							})
 						"
-						clickable
+						:clickable="status === 'authenticated'"
 					/>
 				</div>
 				<Button
@@ -65,6 +65,7 @@
 import { useQuery } from '@tanstack/vue-query'
 
 const { $getTranslation } = useNuxtApp()
+const { status } = useAuth()
 
 const id = useRoute().params.id
 

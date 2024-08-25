@@ -2,7 +2,11 @@
 	<LayoutWrapper :style="$attrs.wrapperStyle">
 		<section class="explore">
 			<header>
-				<Chip v-if="props.chipText" :label="props.chipText" />
+				<Chip
+					v-if="props.chipText"
+					:label="props.chipText"
+					style="margin-inline: auto"
+				/>
 				<Heading element="h2" style="margin-block: 1rem">{{ props.title }}</Heading>
 				<p class="description">{{ props.description }}</p>
 			</header>

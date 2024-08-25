@@ -30,7 +30,7 @@
 					/>
 				</List>
 
-				<List heading="Persony" @showMore="handleShowMore('person')">
+				<!-- <List heading="Persony" @showMore="handleShowMore('person')">
 					<ListItem
 						v-for="item in data?.results?.filter(
 							(result) => result.media_type === 'person' && !!result.profile_path
@@ -38,7 +38,7 @@
 						:key="item.id"
 						:item="item"
 					/>
-				</List>
+				</List> -->
 			</template>
 
 			<template v-else>

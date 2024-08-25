@@ -11,13 +11,11 @@
 					:votes="props.movie?.vote_count"
 				/>
 
-				<span
+				<Chip
 					v-for="genreId in props.movie?.genre_ids"
 					:key="genreId"
-					class="genre"
-				>
-					<span> {{ getGenre(genreId) }} </span>
-				</span>
+					:label="getGenre(genreId)"
+				/>
 			</div>
 			<Button @click="useRouter().push(`/movie/${props.movie?.id}`)">
 				Sledovať teraz</Button
