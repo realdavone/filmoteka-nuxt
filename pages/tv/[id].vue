@@ -120,7 +120,9 @@ const info = computed(() =>
 )
 
 const seasons = computed(() =>
-	tv.value?.seasons?.filter((season) => season?.season_number > 0)
+	tv.value?.seasons?.filter(
+		(season) => season?.season_number > 0 && season?.episode_count > 0
+	)
 )
 
 const title = computed(() =>
