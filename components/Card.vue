@@ -1,30 +1,26 @@
 <template>
-	<div class="card-wrapper">
-		<div
-			class="card"
-			@click="
-				$router.push(`/${item.media_type ?? props.fallbackMediaType}/${item.id}`)
-			"
-		>
-			<div class="card-poster">
-				<img
-					:src="`https://image.tmdb.org/t/p/w500${item.poster_path}`"
-					draggable="false"
-					loading="lazy"
-				/>
-			</div>
-			<div class="card-overlay">
-				<Rating :rating="item.vote_average" variation="small" />
-				<div class="card-description">
-					{{ item.overview }}
-				</div>
-			</div>
+	<div
+		class="card"
+		@click="
+			$router.push(`/${item.media_type ?? props.fallbackMediaType}/${item.id}`)
+		"
+	>
+		<div class="card-poster">
+			<img
+				:src="`https://image.tmdb.org/t/p/w500${item.poster_path}`"
+				draggable="false"
+				loading="lazy"
+			/>
 		</div>
-		<div
-			class="card-title"
-			:style="{ viewTransitionName: `${item.media_type}-${item.id}-title` }"
-		>
-			{{ item.title ?? item.name }}
+		<div class="card-overlay">
+			<Rating :rating="item.vote_average" variation="small" />
+			<h4>
+				{{ item.title ?? item.name }}
+			</h4>
+
+			<div class="card-description">
+				{{ item.overview }}
+			</div>
 		</div>
 	</div>
 </template>
@@ -38,20 +34,11 @@ const props = defineProps({
 		type: String
 	}
 })
-
-const getRating = (rating) =>
-	new Intl.NumberFormat('en-US', { maximumFractionDigits: 1 }).format(rating)
 </script>
 
 <style scoped>
-& .card-title {
-	font-weight: 500;
-	margin-top: 1rem;
-	line-height: 1.2;
-}
 .card {
 	background-color: var(--header-clr);
-	border-radius: 0.875rem;
 	display: flex;
 	flex-direction: column;
 	gap: 1.25rem;
@@ -63,7 +50,7 @@ const getRating = (rating) =>
 	cursor: pointer;
 	isolation: isolate;
 
-	& .card-poster {
+	.card-poster {
 		width: 100%;
 		height: 100%;
 
@@ -75,7 +62,7 @@ const getRating = (rating) =>
 	}
 
 	@media (hover: hover) {
-		& .card-overlay {
+		.card-overlay {
 			position: absolute;
 			inset: 0;
 			background-color: var(--primary-background-clr-a);
@@ -86,25 +73,14 @@ const getRating = (rating) =>
 			opacity: 0;
 			transition: opacity 0.3s ease;
 
-			& .card-rating {
-				border-radius: 50%;
-				border: 4px solid var(--primary-clr);
-				align-self: flex-start;
-				width: 2.5rem;
-				aspect-ratio: 1;
-				font-size: 1rem;
-				font-weight: 700;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				color: var(--primary-clr);
-				padding-bottom: 0.1rem;
-				flex-shrink: 0;
-				background-color: white;
-				outline: 2px solid white;
+			h4 {
+				font-size: 1.25rem;
+				line-height: 1.5;
+				color: white;
+				font-weight: 500;
 			}
 
-			& .card-description {
+			.card-description {
 				font-size: 0.85rem;
 				line-height: 1.5;
 				opacity: 0.75;
@@ -116,9 +92,7 @@ const getRating = (rating) =>
 		}
 
 		&:hover {
-			transform: scale(1.05);
-
-			& .card-overlay {
+			.card-overlay {
 				opacity: 1;
 			}
 		}

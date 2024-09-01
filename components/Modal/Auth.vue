@@ -7,7 +7,7 @@
 		</div>
 
 		<div class="content">
-			<h2>Prihlásiť sa</h2>
+			<h2>Vitajte späť!</h2>
 
 			<p class="description">
 				Sledujte vaše obľúbené filmy a sériály. Stačí sa prihlásiť a začať sledovať.

@@ -64,6 +64,7 @@ watch(
 <style scoped>
 .explore {
 	padding-block: 6rem;
+	container: feat / inline-size;
 }
 
 header {
@@ -79,9 +80,14 @@ header {
 
 .cards {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-	gap: 1rem;
+	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 	margin-top: 3rem;
-	container: cards / inline-size;
+	margin-inline: -1.5rem;
+}
+
+@container feat (width < 768px) {
+	.cards {
+		grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)) !important;
+	}
 }
 </style>
