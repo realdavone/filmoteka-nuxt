@@ -65,18 +65,18 @@ const props = defineProps({
 		.card-overlay {
 			position: absolute;
 			inset: 0;
-			background-color: var(--primary-background-clr-a);
+			background-color: var(--secondary-clr);
 			padding: 1rem;
 			display: flex;
 			flex-direction: column;
 			gap: 1rem;
 			opacity: 0;
 			transition: opacity 0.3s ease;
+			color: black;
 
 			h4 {
 				font-size: 1.25rem;
 				line-height: 1.5;
-				color: white;
 				font-weight: 500;
 			}
 
